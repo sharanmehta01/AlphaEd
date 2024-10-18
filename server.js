@@ -5,6 +5,7 @@ const authRoutes = require('./routes/auth');
 const assessmentRoutes = require('./routes/assessment');
 const dashboardRoutes = require('./routes/dashboard');
 const curriculumRoutes = require('./routes/curriculum');
+const feedbackRoutes = require('./routes/feedback');
 
 const app = express();
 app.use(express.json());
@@ -14,6 +15,7 @@ app.use('/auth', authRoutes);
 app.use('/assessment', assessmentRoutes);
 app.use('/dashboard', dashboardRoutes);
 app.use('/curriculum', curriculumRoutes);
+app.use('/assessment', feedbackRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

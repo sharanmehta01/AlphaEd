@@ -1,0 +1,93 @@
+{
+    "api_framework": {
+        "1. Authentication API": {
+            "description": "Authenticates a student or teacher, returning a JWT token for secure session management.",
+            "endpoint": "/auth/login",
+            "method": "POST",
+            "request": {
+                "username": "string",
+                "password": "string"
+            },
+            "response_success": {
+                "token": "string (JWT token)",
+                "user": {
+                    "id": "string",
+                    "role": "student/teacher"
+                }
+            },
+            "response_failure": {
+                "error": "Invalid credentials"
+            }
+        },
+        "2. Generate Question API": {
+            "description": "Generates a real-time, context-specific question based on student performance and past interactions.",
+            "endpoint": "/assessment/generate-question",
+            "method": "POST",
+            "request": {
+                "studentId": "string",
+                "currentTopic": "string",
+                "performanceData": {
+                    "pastAnswers": [
+                        {
+                            "question": "string",
+                            "answer": "string",
+                            "correct": "boolean"
+                        }
+                    ]
+                }
+            },
+            "response": {
+                "generatedQuestion": "string",
+                "suggestedDifficulty": "adaptive"
+            }
+        },
+        "3. Qualitative Feedback API": {
+            "description": "Provides qualitative feedback on student responses, analyzing the approach, not just correctness.",
+            "endpoint": "/assessment/qualitative-feedback",
+            "method": "POST",
+            "request": {
+                "studentId": "string",
+                "questionId": "string",
+                "studentAnswer": "string"
+            },
+            "response": {
+                "feedback": "string"
+            }
+        },
+        "4. Fetch Student Progress API": {
+            "description": "Retrieves student progress and performance data for teachers to view.",
+            "endpoint": "/dashboard/progress",
+            "method": "GET",
+            "request": {
+                "studentId": "string"
+            },
+            "response": {
+                "studentId": "string",
+                "progressReport": {
+                    "subject": "string",
+                    "completedTopics": [
+                        "string"
+                    ],
+                    "competencyLevel": "string"
+                }
+            }
+        },
+        "5. Get Personalized Curriculum API": {
+            "description": "Fetches the personalized curriculum based on the student\u2019s performance, goals, and interests.",
+            "endpoint": "/curriculum/personalized",
+            "method": "GET",
+            "request": {
+                "studentId": "string"
+            },
+            "response": {
+                "curriculum": {
+                    "currentTopic": "string",
+                    "suggestedNextTopic": "string",
+                    "resources": [
+                        "string"
+                    ]
+                }
+            }
+        }
+    }
+}
